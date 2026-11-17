@@ -91,7 +91,7 @@ def generate_raw_wrappers(function_name, wrappers):
                         returned.append(value)
                 native_index += 2
 
-            elif "rank" in argument:
+            elif kind in ("tensor", "buffered_tensor"):
                 # Forward allocated/aligned pointers, offset, sizes and strides
                 # with the native signature types, including address spaces.
                 for j in range(3 + 2 * argument["rank"]):

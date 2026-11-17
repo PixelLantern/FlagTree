@@ -12,7 +12,7 @@ def _compile_pending_raw_sources(mod: Any, pending: dict[str, dict[str, Any]]) -
     from triton.experimental.tle.raw.cuda.runtime import compile_deferred_pending_source
 
     wrappers = {}
-    for metadata in nvidia.passes.tle_raw.register_raw_wrappers(mod):
+    for metadata in tle.raw_passes.register_raw_wrappers(mod, ["cuda"]):
         wrappers.setdefault(metadata["source_id"], []).append(metadata)
 
     compiled = {}
@@ -27,6 +27,7 @@ def _compile_pending_raw_sources(mod: Any, pending: dict[str, dict[str, Any]]) -
             compiled[source_id] = {
                 "region_dialect": entry["region_dialect"],
                 "extern_func_name": entry["extern_func_name"],
+                "dsl_file_name": entry["dsl_file_name"],
                 "llvm_ir": llvm_ir,
             }
         except Exception as exc:

@@ -5,10 +5,10 @@ include "mlir/Pass/PassBase.td"
 
 def NvidiaMaterializeDeferredRaw
     : Pass<"tle-materialize-deferred-raw", "mlir::ModuleOp"> {
-  let summary = "Materialize deferred TLE raw DSL regions from pending CUDA sources";
+  let summary = "Materialize deferred TLE raw calls from compiled CUDA sources";
   let description = [{
-    Fills the bodies of ``tle.dsl_region`` ops that carry a ``tle_raw.source_id``
-    attribute by looking up registered pending CUDA sources at compile time.
+    Imports each compiled CUDA source once and binds empty ``tle.dsl_region``
+    calls carrying ``tle_raw.source_id`` to their specialized LLVM wrappers.
   }];
   let dependentDialects = ["mlir::triton::tle::TleDialect"];
 }

@@ -7,6 +7,7 @@ namespace mlir::triton::iluvatar::tle_raw {
 
 struct CompiledRaw {
   std::string regionDialect;
+  std::string dslFileName;
   std::string externFuncName;
   std::string llvmIr;
 };

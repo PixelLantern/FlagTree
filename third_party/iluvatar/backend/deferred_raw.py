@@ -21,6 +21,7 @@ def _compile_pending_raw_sources(mod: Any, pending: dict[str, dict[str, Any]]) -
             compiled[source_id] = {
                 "region_dialect": entry["region_dialect"],
                 "extern_func_name": entry["extern_func_name"],
+                "dsl_file_name": entry["dsl_file_name"],
                 "llvm_ir": llvm_ir,
             }
         except Exception as exc:

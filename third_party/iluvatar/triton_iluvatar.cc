@@ -351,6 +351,7 @@ convertCompiledRawSources(py::dict sources) {
     py::dict entry = py::cast<py::dict>(item.second);
     mlir::triton::iluvatar::tle_raw::CompiledRaw source;
     source.regionDialect = entry["region_dialect"].cast<std::string>();
+    source.dslFileName = entry["dsl_file_name"].cast<std::string>();
     if (entry.contains("extern_func_name") &&
         !entry["extern_func_name"].is_none()) {
       source.externFuncName = entry["extern_func_name"].cast<std::string>();

@@ -1,3 +1,15 @@
+add_triton_library(HCURawWrapperAdapter
+  RawWrapperAdapter.cpp
+
+  LINK_LIBS PUBLIC
+  MLIRLLVMDialect
+  MLIRDataLayoutInterfaces
+)
+
+target_include_directories(HCURawWrapperAdapter PUBLIC
+  ${CMAKE_SOURCE_DIR}/third_party
+)
+
 add_triton_library(HCUTLERawTransforms
   MaterializeDeferredRaw.cpp
 
@@ -14,6 +26,7 @@ add_triton_library(HCUTLERawTransforms
   TleIR
   TritonIR
   TritonTLERawUtils
+  HCURawWrapperAdapter
 )
 
 target_include_directories(HCUTLERawTransforms PUBLIC

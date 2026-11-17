@@ -101,6 +101,7 @@ public:
       for (auto function : parsed->getOps<LLVM::LLVMFuncOp>()) {
         if (!function.isExternal()) {
           function.setLinkage(LLVM::Linkage::Internal);
+          function.setVisibility_(LLVM::Visibility::Default);
           SymbolTable::setSymbolVisibility(function,
                                            SymbolTable::Visibility::Private);
         }

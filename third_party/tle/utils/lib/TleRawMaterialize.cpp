@@ -85,7 +85,7 @@ FailureOr<llvm::StringMap<Operation *>> renameLLVMSymbols(
   SmallVector<std::pair<Operation *, StringAttr>> changes;
 
   for (Operation &op : module.getBody()->getOperations()) {
-    auto name = SymbolTable::getSymbolName(&op);
+    auto name = op.getAttrOfType<StringAttr>(SymbolTable::getSymbolAttrName());
     if (name)
       occupied.insert(name.getValue());
     if (!isa<LLVM::LLVMFuncOp, LLVM::GlobalOp>(op))
